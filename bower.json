@@ -1,0 +1,23 @@
+{
+  "name": "dropon",
+  "authors": [
+    "Samir ROUABHI <rouabhi@gmail.com>"
+  ],
+  "description": "A bootstrap component formed by an edit box + a dropdown",
+  "main": "index.js",
+  "moduleType": [],
+  "keywords": [
+    "bootstrap",
+    "dropdown",
+    "editbox"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
