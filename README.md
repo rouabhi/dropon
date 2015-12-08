@@ -1,4 +1,6 @@
-# dropon v0.1.0
+# dropon v0.2.0
+This is the first working version
+
 **Dropon** is a Bootstrap component.
 **Dropon** is composed by an edit box and a addon. This addon is a dropdown that permit to select options, typically numerical values.
 You can use up and down arrows keys to change units
