@@ -45,23 +45,21 @@ $(document).ready( function(){
 ``````
 
 # Available functions
- - ```.dropon()```
-Initializes a **dropon** element.
 
- - ```.dropon('focus')``` and ```.dropon('select')```
-Give the element focus and selects the current text.
+ * ```.dropon()``` : Initializes a **dropon** element.
 
- - ```.dropon('open')```, ```.dropon('close')``` and ```.dropon('toggle')```
+ * ```.dropon('focus')``` : Give the edit box focus.
+
+ * ```.dropon('select')``` : Selects the edit box content.
+
+ * ```.dropon('open')```, ```.dropon('close')``` and ```.dropon('toggle')```
 Opens, closes or toggles the dropdown menu.
 
- -  ```.dropon('val')```
-Returns the content of the editbox.
+ *  ```.dropon('val')``` : Returns the content of the editbox.
 
- -  ```.dropon('selected')```
-Returns the value of the selected option in the dropdown. 
+ *  ```.dropon('selected')``` : Returns the value of the selected option in the dropdown. 
 
-## ```.dropon('VAL')```
-This function returns the products of these two values (see below).
+ - ```.dropon('VAL')``` : This function returns the products of these two values (see below).
 
 # Component control
 When entering a value with the ```dropon``` component, the user can change dropdown value using arrows keys. This could be convinient in keybord devices.
