@@ -8,6 +8,7 @@
     <meta name="author" content="">
 	<title>DROPON component</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="./icon.png" />
   </head>
 
   <body>
@@ -23,42 +24,57 @@
 
         <div class="container">
         <p class="lead">Example: unit converter.</p>
-        <form class="form-inline" action="#">
-     <div class="input-group dropon"  id="srcDistance">
-      <input type="text" class="form-control" aria-label="...">
-      <div class="input-group-btn">
-        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="dropdown-value" data-value=""></span>
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right"  data-toggle='dropon'>
-          <li><a href="#" data-value="1">meters</a></li>
-          <li><a href="#" data-value="10000" data-selected>Kilometers</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#" data-value="1852">Nautical Miles</a></li>
-          <li><a href="#" data-value="0.3048">Feet</a></li>
-          <li><a href="#" data-value="0.0254">Inches</a></li>
-        </ul>
-      </div>
-    </div>
-          <button type="submit" class="btn btn-success" id="conversionBtn"> gives </button>
-          <div class="input-group">
-            <input class="form-control" type="text" min="0" placeholder="meters"  data-type="float" id="resultEdit" />
+        <form class="form-inline" style="margin-bottom:100px;">
+
+          <!-- dropon with a dropdown menu -->
+          <div class="input-group dropon" id="srcDistance" style="width:300px;">
+            <input type="text" class="form-control" aria-label="...">
+            <div class="input-group-btn">
+              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="dropdown-value" data-value=""></span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right"  data-toggle='dropon'>
+                <li><a href="#" data-value="1">meters</a></li>
+                <li><a href="#" data-value="10000" data-selected>Kilometers</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#" data-value="1852">Nautical Miles</a></li>
+                <li><a href="#" data-value="0.3048">Feet</a></li>
+                <li><a href="#" data-value="0.0254">Inches</a></li>
+              </ul>
+            </div>
+          </div> <!-- dropon with a dropdown menu -->
+
+          <button type="button" class="btn btn-success" id="conversionBtn"> gives </button>
+
+          <!-- dropon without dropdown menu -->
+          <div class="input-group dropon" id="resultEdit">
+            <input class="form-control" type="text" min="0" placeholder="meters"  data-type="float" />
             <div class="input-group-addon">Meters</div>
-          </div>
+          </div> <!-- dropon without dropdown menu -->
+
         </form>
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="./dropon.js"></script>
     <script>
-    $(document).ready( function(){
-      $(".dropon").dropon().dropon('focus');
-    });
-    $("#conversionBtn").click( function(){
-      $("#resultEdit").val( $("#srcDistance").dropon('VAL') );
+    function convert(x){
+      console.log(this);
+      console.log(x);
+      $("#resultEdit").dropon("text", $("#srcDistance").dropon('val') );
       $("#srcDistance").dropon('select');
-    } );
+    }
+
+    $(document).ready( function(){
+      $(".dropon").dropon();
+      $("#srcDistance")
+        .dropon('focus')
+        .on("dropon:submit",convert)
+        .on("dropon:change",convert)
+        .on("dropdown:change",convert);
+    });
+    $("#conversionBtn").click( convert );
     </script>
   </body>
 </html>
