@@ -1,6 +1,6 @@
-# dropon v0.2.1
+# dropon v1.0.0
 
-**Dropon** is a Bootstrap component.
+**Dropon** is a Bootstrap v3 component.
 **Dropon** is composed by an edit box and a addon. This addon is a dropdown that permit to select options, typically numerical values.
 You can use up and down arrows keys to change units
 
@@ -38,11 +38,11 @@ Inside the body of the html file, you can add **dropon** elements by adding the 
 The ```data-selected``` attribute indicates the default value.
 
 In the **Javascript** code, you should initialise *dropon* elements:
-``````javascript
+```javascript
 $(document).ready( function(){
   $(".dropon").dropon().dropon('focus');
 });
-``````
+```
 
 # Available functions
 
@@ -55,14 +55,16 @@ $(document).ready( function(){
  * ```.dropon('open')```, ```.dropon('close')``` and ```.dropon('toggle')```
 Opens, closes or toggles the dropdown menu.
 
- *  ```.dropon('val')``` : Returns the content of the editbox.
+ *  ```.dropon('text')``` : Returns the content of the editbox.
 
  *  ```.dropon('selected')``` : Returns the value of the selected option in the dropdown. 
 
- - ```.dropon('VAL')``` : This function returns the products of these two values (see below).
+ *  ```.dropon('selected',value)``` : change the selected item of the dropdown.
+
+ * ```.dropon('val')``` : This function returns the products of two values (see below) : the float value intered in the edit box and the value selected in the drop box.
 
 # Component control
-When entering a value with the ```dropon``` component, the user can change dropdown value using arrows keys. This could be convinient in keybord devices.
+When entering a value with the ```dropon``` component, the user can change dropdown value using arrows keys and open/close dropdown with the ESC key. This could be convinient in keybord devices.
 
 # Using dropon component as multi-unit edit box
 The main reason I created this component is to allow entering a value with a a factor, like in different units.
@@ -90,4 +92,54 @@ To controle the edit box content, you should also add a ```data-type``` attribut
 </div>
 ```
 
-In this case, in the example below, the ```$("#distance").dropon("VAL")``` function return directly the entered value in meters.
+In this case, in the example below, the ```$("#distance").dropon("val")``` function return directly the entered value in meters.
+
+# Using dropon component without dropdown
+For consistancy reason, the dropon component can also be used when we have only an edit box and an add-on element. This permit a kind of consistensy by using the same function for handling both compnents:
+
+**HTML:**
+
+```html
+<div class="input-group dropon" id="result">
+  <input class="form-control" type="text" placeholder="distance" />
+  <div class="input-group-addon">Meters</div>
+</div>
+```
+
+**Javascript:**
+```javascript
+$(document).ready( function(){
+  $(".dropon").dropon(); // initialization
+  $("#distance").on("dropon:change", function(){...})
+});
+
+
+```
+
+# Events
+The following events can be added to the component defined above:
+ 
+```
+$("#distance").on("dropon:focus", eventHandler);
+```
+Fired when the edit box get focus.
+
+```
+$("#distance").on("dropon:blur", eventHandler);
+```
+Fired when the edit box lose focus.
+```
+$("#distance").on("dropon:change", eventHandler);
+```
+Fired when leaving the edit box and the content was changed.
+
+
+```
+$("#distance").on("dropon:submit", eventHandler);
+```
+Fired when Enter key pressed when entering value on the edit box.
+
+```
+$("#distance").on("dropdown:change", eventHandler);
+```
+Fired when the value from the dropbox is changed.
