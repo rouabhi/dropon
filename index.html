@@ -27,7 +27,7 @@
         <form class="form-inline" style="margin-bottom:100px;">
 
           <!-- dropon with a dropdown menu -->
-          <div class="input-group dropon" id="srcDistance" style="width:300px;">
+          <div class="input-group dropon" id="srcDistance" style="width:300px;" data-type="float"  data-min=0 data-max=1e7>
             <input type="text" class="form-control" aria-label="...">
             <div class="input-group-btn">
               <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,7 +36,7 @@
               </button>
               <ul class="dropdown-menu dropdown-menu-right"  data-toggle='dropon'>
                 <li><a href="#" data-value="1">meters</a></li>
-                <li><a href="#" data-value="10000" data-selected>Kilometers</a></li>
+                <li><a href="#" data-value="1000" data-selected>Kilometers</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#" data-value="1852">Nautical Miles</a></li>
                 <li><a href="#" data-value="0.3048">Feet</a></li>
@@ -48,8 +48,8 @@
           <button type="button" class="btn btn-success" id="conversionBtn"> gives </button>
 
           <!-- dropon without dropdown menu -->
-          <div class="input-group dropon" id="resultEdit">
-            <input class="form-control" type="text" min="0" placeholder="meters"  data-type="float" />
+          <div class="input-group dropon" id="resultEdit" data-type="real">
+            <input class="form-control" type="text" min="0" placeholder="meters" />
             <div class="input-group-addon">Meters</div>
           </div> <!-- dropon without dropdown menu -->
 
@@ -59,11 +59,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="./dropon.js"></script>
     <script>
-    function convert(x){
-      console.log(this);
-      console.log(x);
+    function convert(){
       $("#resultEdit").dropon("text", $("#srcDistance").dropon('val') );
-      $("#srcDistance").dropon('select');
+      //$("#srcDistance").dropon('select');
     }
 
     $(document).ready( function(){
@@ -72,6 +70,9 @@
         .dropon('focus')
         .on("dropon:submit",convert)
         .on("dropon:change",convert)
+        .on("dropon:error",function(e){
+          // $(this).dropon("focus");
+        })
         .on("dropdown:change",convert);
     });
     $("#conversionBtn").click( convert );
