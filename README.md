@@ -63,6 +63,15 @@ Opens, closes or toggles the dropdown menu.
 
  * ```.dropon('val')``` : This function returns the products of two values (see below) : the float value intered in the edit box and the value selected in the drop box.
 
+ *  ```.dropon('readonly', boolean )``` : make the component read only.
+
+ *  ```.dropon('disabled', boolean )``` : disable/enable the component.
+
+ *  ```.dropon('has', "error" )```
+ *  ```.dropon('has', "warning" )```
+ *  ```.dropon('has', "success" )``` : make the control red/orange/green.
+
+
 # Component control
 When entering a value with the ```dropon``` component, the user can change dropdown value using arrows keys and open/close dropdown with the ESC key. This could be convinient in keybord devices.
 
@@ -71,7 +80,7 @@ The main reason I created this component is to allow entering a value with a a f
 
 Suppose you have to inter a distance. You want to allow the user to enter it in meters, in inches, in feet,... A simple way to do so is to use the dropbox to select the unit, and use dropbox values as conversion factors.
 
-To controle the edit box content, you should also add a ```data-type``` attribute as ```"float"``` or ```"int"```.
+To control the edit box content, you should also add a ```data-type``` attribute as ```"float"```, ```"real"``` or ```"int"```. Other available attributes are ```data-min``` and ```data-max```. A function can also specify a Regexp : ```.dropon("regex", /...../)``` (see below).
 
 ```html
 <div class="input-group dropon" id ="distance">
