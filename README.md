@@ -1,4 +1,4 @@
-# dropon v1.0.0
+# dropon v1.1.0
 
 **Dropon** is a Bootstrap v3 component.
 **Dropon** is composed by an edit box and a addon. This addon is a dropdown that permit to select options, typically numerical values.
@@ -116,6 +116,14 @@ $(document).ready( function(){
 
 ```
 
+# entry validation
+The value entred in the edit box is validated against many creterias:
+ * **type** : ```data-type``` attribute can be specified as 'int', 'real' or 'float'
+ * **min** and **max** : given in the attributes ```data-min``` and ```data-max```.
+ * **regexp** : given by the method ```$("#element").dropon("regexp", /regular expression/);``` 
+
+If the entered value is incorect, the component is given the Bootstrap class ```has-error``` and the event ```'dropon:error'``` is fired.
+
 # Events
 The following events can be added to the component defined above:
  
@@ -128,10 +136,16 @@ Fired when the edit box get focus.
 $("#distance").on("dropon:blur", eventHandler);
 ```
 Fired when the edit box lose focus.
+
 ```
 $("#distance").on("dropon:change", eventHandler);
 ```
 Fired when leaving the edit box and the content was changed.
+
+```
+$("#distance").on("dropon:error", eventHandler);
+```
+Fired when a validation error occured when leaving the edit box. The field is supposed not to be mandatory so if the edit box is empty, no event is fired.
 
 
 ```
