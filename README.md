@@ -1,4 +1,4 @@
-# dropon v1.1.0
+# dropon v1.2.0
 
 **Dropon** is a Bootstrap v3 component.
 **Dropon** is composed by an edit box and a addon. This addon is a dropdown that permit to select options, typically numerical values.
@@ -80,7 +80,9 @@ The main reason I created this component is to allow entering a value with a a f
 
 Suppose you have to inter a distance. You want to allow the user to enter it in meters, in inches, in feet,... A simple way to do so is to use the dropbox to select the unit, and use dropbox values as conversion factors.
 
-To control the edit box content, you should also add a ```data-type``` attribute as ```"float"```, ```"real"``` or ```"int"```. Other available attributes are ```data-min``` and ```data-max```. A function can also specify a Regexp : ```.dropon("regex", /...../)``` (see below).
+To control the edit box content, you should also add a ```data-type``` attribute as ```"float"```, ```"real"``` or ```"int"```. Other available attributes are ```data-min``` and ```data-max``` (for the limits of the entered value in the edit box), ```data-min-val``` and ```data-max-val``` (for the limits of the converted value).
+
+A function can also specify a Regexp : ```.dropon("regex", /...../)``` (see below).
 
 ```html
 <div class="input-group dropon" id ="distance">
@@ -119,23 +121,24 @@ For consistancy reason, the dropon component can also be used when we have only 
 ```javascript
 $(document).ready( function(){
   $(".dropon").dropon(); // initialization
-  $("#distance").on("dropon:change", function(){...})
+  $("#distance")
+    .on("dropon:change", function(){...})
+    .on("dropdown:change", function(){...});
 });
-
-
 ```
 
 # entry validation
-The value entred in the edit box is validated against many creterias:
+The value entred in the edit box is validated against many criterias:
  * **type** : ```data-type``` attribute can be specified as 'int', 'real' or 'float'
  * **min** and **max** : given in the attributes ```data-min``` and ```data-max```.
+ * **min-val** and **max-val** : given in the attributes ```data-min-val``` and ```data-max-val```.
  * **regexp** : given by the method ```$("#element").dropon("regexp", /regular expression/);``` 
 
 If the entered value is incorect, the component is given the Bootstrap class ```has-error``` and the event ```'dropon:error'``` is fired.
 
 # Events
 The following events can be added to the component defined above:
- 
+
 ```
 $("#distance").on("dropon:focus", eventHandler);
 ```
@@ -155,7 +158,6 @@ Fired when leaving the edit box and the content was changed.
 $("#distance").on("dropon:error", eventHandler);
 ```
 Fired when a validation error occured when leaving the edit box. The field is supposed not to be mandatory so if the edit box is empty, no event is fired.
-
 
 ```
 $("#distance").on("dropon:submit", eventHandler);
