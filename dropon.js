@@ -23,8 +23,11 @@ $.fn.dropon = function(action, value) {
       if ($dropon.data("type") && !$input.val().match(types[ $dropon.data("type") ])) return false;
 
       var value = parseFloat($input.val());
+      var factor = parseFloat($dropon.data("value")) || 1;
       if ((typeof $dropon.data("min") !== "undefined") && (value < parseFloat($dropon.data("min")) )) return false;
       if ((typeof $dropon.data("max") !== "undefined") && (value > parseFloat($dropon.data("max")) )) return false;
+      if ((typeof $dropon.data("minVal") !== "undefined") && ((value*factor) < parseFloat($dropon.data("minVal")) )) return false;
+      if ((typeof $dropon.data("maxVal") !== "undefined") && ((value*factor) > parseFloat($dropon.data("maxVal")) )) return false;
       if ($dropon.data("regexp") && !$input.val().match($dropon.data("regexp"))) return false;
 
       return true;

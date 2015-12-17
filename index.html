@@ -23,18 +23,18 @@
     </div>
 
         <div class="container">
-        <p class="lead">Example: unit converter.</p>
+        <p class="lead">Example: unit converter of distances between 1m and 50km.</p>
         <form class="form-inline" style="margin-bottom:100px;">
 
           <!-- dropon with a dropdown menu -->
-          <div class="input-group dropon" id="srcDistance" style="width:300px;" data-type="float"  data-min=0 data-max=1e7>
+          <div class="input-group dropon" id="srcDistance" style="width:300px;" data-type="float"  data-min=0 data-max=1e6 data-min-val=10 data-max-val=5e4>
             <input type="text" class="form-control" aria-label="...">
             <div class="input-group-btn">
               <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="dropdown-value" data-value=""></span>
                 <span class="caret"></span>
               </button>
-              <ul class="dropdown-menu dropdown-menu-right"  data-toggle='dropon'>
+              <ul class="dropdown-menu dropdown-menu-right" data-toggle="dropon">
                 <li><a href="#" data-value="1">meters</a></li>
                 <li><a href="#" data-value="1000" data-selected>Kilometers</a></li>
                 <li role="separator" class="divider"></li>
